@@ -586,3 +586,22 @@ int hx4_x4djbx33a_128_ssse3(const void *buffer, size_t buffer_size, const void *
   return HX4_ERR_SUCCESS;
 }
 #endif //HX4_HAS_SSSE3
+
+int mnt_fnv64 (const void *buffer, size_t buffer_size, const void *cookie, size_t cookie_sz, void *out_hash, size_t out_hash_size)
+{
+	const uint8_t * p = (const uint8_t *)buffer;
+	uint64_t hval = 0xcbf29ce484222325ULL;
+	for ( ; buffer_size>0; buffer_size-- )
+	{
+		// xor the bottom with the current octet
+		hval ^= (uint64_t)*p++;
+
+		// multiply by the 64 bit FNV magic prime mod 2^64
+		hval += (hval << 1) + (hval << 4) + (hval << 5) + (hval << 7) + (hval << 8) + (hval << 40); // gcc optimization
+	}
+
+	memcpy ( out_hash, &hval, sizeof(hval) );
+
+	return HX4_ERR_SUCCESS;
+
+}

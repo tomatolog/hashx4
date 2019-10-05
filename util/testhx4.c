@@ -132,6 +132,7 @@ static int test_##hash_function##_performance(FILE *stream, const void *in, size
 } \
 
 
+HX4_PERF_TEST_IMPL(mnt_fnv64, 64)
 HX4_PERF_TEST_IMPL(hx4_djbx33a_32_ref, 32)
 HX4_PERF_TEST_IMPL(hx4_djbx33a_32_copt, 32)
 HX4_PERF_TEST_IMPL(hx4_x4djbx33a_128_ref, 128)
@@ -380,6 +381,7 @@ int main(int argc, char **argv) {
     TEST_ITEM(test_hx4_x4djbx33a_128_ssse3_cookie_applied)
 #endif
  
+	TEST_ITEM(test_mnt_fnv64_performance)
     TEST_ITEM(test_hx4_djbx33a_32_ref_performance)
     TEST_ITEM(test_hx4_djbx33a_32_copt_performance)
     TEST_ITEM(test_hx4_x4djbx33a_128_ref_performance)
