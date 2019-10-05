@@ -37,7 +37,7 @@
 
 #include "hashx4.h"
 #include "hx4_util.h"
-
+#include "../crc32c/include/crc32c/crc32c.h "
 
 int hx4_djbx33a_32_ref(const void *buffer, size_t buffer_size, const void *cookie, size_t cookie_sz, void *out_hash, size_t out_hash_size) {
   const uint8_t *p;
@@ -604,4 +604,13 @@ int mnt_fnv64 (const void *buffer, size_t buffer_size, const void *cookie, size_
 
 	return HX4_ERR_SUCCESS;
 
+}
+
+int hx4_crc32c (const void *buffer, size_t buffer_size, const void *cookie, size_t cookie_sz, void *out_hash, size_t out_hash_size)
+{
+	uint32_t hval = crc32c_value ( buffer, buffer_size );
+
+	memcpy ( out_hash, &hval, sizeof(hval) );
+
+	return HX4_ERR_SUCCESS;
 }

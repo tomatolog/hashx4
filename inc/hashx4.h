@@ -33,6 +33,8 @@ extern "C" {
 #endif
 
 int mnt_fnv64 (const void *buffer, size_t buffer_size, const void *cookie, size_t cookie_sz, void *out_hash, size_t out_hash_size);
+int hx4_crc32c (const void *buffer, size_t buffer_size, const void *cookie, size_t cookie_sz, void *out_hash, size_t out_hash_size);
+
 int hx4_djbx33a_32_ref     (const void *in, size_t in_sz, const void *cookie, size_t cookie_sz, void *out, size_t out_sz);
 int hx4_djbx33a_32_copt    (const void *in, size_t in_sz, const void *cookie, size_t cookie_sz, void *out, size_t out_sz);
 int hx4_x4djbx33a_128_ref  (const void *in, size_t in_sz, const void *cookie, size_t cookie_sz, void *out, size_t out_sz);

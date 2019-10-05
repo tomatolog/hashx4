@@ -6,6 +6,8 @@ include_directories(
   "${CMAKE_SOURCE_DIR}/src/"
 )
 
+add_subdirectory(crc32c)
+
 if(NOT MSVC)
 add_definitions(
   -Wall
@@ -31,3 +33,5 @@ add_executable(testhx4
   inc/hashx4.h
   inc/hashx4_config.h
 )
+
+target_link_libraries(testhx4 crc32c)
